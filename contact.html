@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – FoodieExpress</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+  <button class="nav-toggle" onclick="document.querySelector('.nav').classList.toggle('open')">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+  <div class="header-right">
+    <a href="login.html">SignUp/SignIn</a>
+  </div>
+</header>
+
+
+<section class="contact-page-hero">
+  <h2>Contact Us 📬</h2>
+  <p>We'd love to hear from you — reach out anytime!</p>
+</section>
+
+
+<div class="contact-wrapper">
+
+
+  <section class="contact-information">
+    <h4>Contact Information</h4>
+
+    <div class="contact-info-item">
+      <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="contact-info-content">
+        <h3>Address</h3>
+        <p>Bheja Road Laxmipur Chowk, Madhepur, Madhubani - 847408</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+      <div class="contact-info-content">
+        <h3>Phone</h3>
+        <p>+91 7645352340</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+      <div class="contact-info-content">
+        <h3>Email</h3>
+        <p>abhinavkmrjh@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+      <div class="contact-info-content">
+        <h3>Hours</h3>
+        <p>Mon–Sat: 9:00 AM – 10:00 PM<br>Sun: 10:00 AM – 9:00 PM</p>
+      </div>
+    </div>
+
+    <div class="social-links" style="margin-top:24px;">
+      <a href="https://facebook.com/vedikaOil"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/vedikaOil"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/vedikaOil"><i class="fab fa-youtube"></i></a>
+    </div>
+  </section>
+
+  <section class="message">
+    <h4>Send a Message ✉️</h4>
+
+    <div class="input-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="input-group">
+        <label>Your Name</label>
+        <input type="text" id="contactName" placeholder="Full name">
+      </div>
+      <div class="input-group">
+        <label>Phone</label>
+        <input type="tel" id="contactPhone" placeholder="+91 0000000000">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Email Address</label>
+      <input type="email" id="contactEmail" placeholder="you@example.com">
+    </div>
+
+    <div class="input-group">
+      <label>Subject</label>
+      <input type="text" id="contactSubject" placeholder="How can we help?">
+    </div>
+
+    <div class="input-group">
+      <label>Message</label>
+      <textarea id="contactMsg" placeholder="Describe your issue or feedback..."></textarea>
+    </div>
+
+    <button class="contact-btn" id="sendMsgBtn" onclick="sendContactMessage()">
+      Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>
+    </button>
+  </section>
+
+</div>
+
+
+<footer>
+  <div class="footer-col">
+    <div class="footer-logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+    <p class="footer-desc">FoodieExpress delivers your favorite meals fresh, fast, and right to your doorstep.</p>
+  </div>
+  <div class="footer-col">
+    <div class="footer-heading">Quick Links</div>
+    <a href="home.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-col">
+    <div class="footer-heading">Contact</div>
+    <p class="footer-desc">Patna,Near IIT Patna - 801106</p>
+    <p>📞 +91 7645352340</p>
+    <p>📧 foodexpress@gmail.com</p>
+  </div>
+  <div class="footer-col">
+    <div class="footer-heading">Follow Us</div>
+    <div class="social-links">
+      <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 FoodieExpress. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="JavaScript/main.js"></script>
+</body>
+</html>

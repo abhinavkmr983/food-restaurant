@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu – FoodieExpress</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+  <button class="nav-toggle" onclick="document.querySelector('.nav').classList.toggle('open')">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="menu.html" class="active">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="header-right">
+    <a href="login.html">SignUp/SignIn</a>
+    <button class="cart-btn" onclick="window.location.href='cart.html'">
+      🛒 Cart <span id="cartCount" class="cart-count" style="display:none;"></span>
+    </button>
+  </div>
+</header>
+
+
+<section class="menu-banner">
+  <div class="menu-banner-container">
+    <h2>Our <span>Menu</span></h2>
+    <p>Fresh food, made with love — order your favourite today</p>
+  </div>
+</section>
+
+
+<section class="menu-section">
+  <div class="menu-container">
+   
+    <div class="menu-filters" id="filterBar">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="biryani">🍛 Biryani</button>
+      <button class="filter-btn" data-cat="pizza">🍕 Pizza</button>
+      <button class="filter-btn" data-cat="burger">🍔 Burger</button>
+      <button class="filter-btn" data-cat="chinese">🥡 Chinese</button>
+      <button class="filter-btn" data-cat="thali">🍱 Thali</button>
+    </div>
+
+    <div id="menu"></div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-col">
+    <div class="footer-logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+    <p class="footer-desc">FoodieExpress delivers your favorite meals fresh, fast, and right to your doorstep.</p>
+  </div>
+  <div class="footer-col">
+    <div class="footer-heading">Quick Links</div>
+    <a href="home.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-col">
+    <div class="footer-heading">Contact</div>
+    <p class="footer-desc">Patna,Near IIT Patna - 801106</p>
+    <p>📞 +91 7645352340</p>
+    <p>📧 foodexpress@gmail.com</p>
+  </div>
+  <div class="footer-col">
+    <div class="footer-heading">Follow Us</div>
+    <div class="social-links">
+      <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 FoodieExpress. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="JavaScript/cart.js"></script>
+<script src="JavaScript/menu.js"></script>
+</body>
+</html>

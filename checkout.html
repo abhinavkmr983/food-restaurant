@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – FoodieExpress</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="header-right">
+    <a href="login.html">SignUp/SignIn</a>
+  </div>
+</header>
+
+<div class="step-bar">
+  <div class="step done">
+    <div class="step-circle"><i class="fas fa-check" style="font-size:0.7rem;"></i></div>
+    <span>Cart</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step active">
+    <div class="step-circle">2</div>
+    <span>Checkout</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step">
+    <div class="step-circle">3</div>
+    <span>Confirm</span>
+  </div>
+</div>
+
+
+<div class="checkout-layout">
+
+
+  <div class="checkout-form-card">
+    <h2>🏠 Delivery Address</h2>
+
+    <div class="input-row">
+      <div class="input-data">
+        <label>Full Name</label>
+        <input type="text" id="co_name" placeholder="Your full name">
+      </div>
+      <div class="input-data">
+        <label>Phone Number</label>
+        <input type="tel" id="co_phone" placeholder="+91 0000000000">
+      </div>
+    </div>
+
+    <div class="input-data">
+      <label>Full Address</label>
+      <input type="text" id="co_address" placeholder="House no., Street, Area...">
+    </div>
+
+    <div class="input-row">
+      <div class="input-data">
+        <label>City</label>
+        <input type="text" id="co_city" placeholder="Your city">
+      </div>
+      <div class="input-data">
+        <label>Pincode</label>
+        <input type="text" id="co_pincode" placeholder="847408" maxlength="6">
+      </div>
+    </div>
+
+    <div class="input-data">
+      <label>Delivery Note (Optional)</label>
+      <textarea id="co_note" placeholder="Any special instructions for delivery..."></textarea>
+    </div>
+
+    <div class="payment-section-label">💳 Payment Method</div>
+    <div class="payment-options" id="paymentOptions">
+      <div class="payment-class selected" data-method="cod" onclick="selectPayment(this)">
+        <div class="pay-icon">💵</div>
+        <h2>Cash on Delivery</h2>
+        <p>Pay when order arrives</p>
+      </div>
+      <div class="payment-class" data-method="upi" onclick="selectPayment(this)">
+        <div class="pay-icon">📱</div>
+        <h2>UPI</h2>
+        <p>GPay, PhonePe, Paytm</p>
+      </div>
+      <div class="payment-class" data-method="card" onclick="selectPayment(this)">
+        <div class="pay-icon">💳</div>
+        <h2>Card</h2>
+        <p>Visa, Mastercard, RuPay</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="checkout-summary-card">
+    <h2>🧾 Order Summary</h2>
+    <div id="checkoutItems"></div>
+    <div class="summary-rows" style="margin-top:12px;">
+      <div class="sum-row"><span>Subtotal</span><span id="coSubtotal">₹0</span></div>
+      <div class="sum-row"><span>Delivery</span><span class="free-tag">FREE</span></div>
+      <div class="sum-row"><span>GST (5%)</span><span id="coGst">₹0</span></div>
+      <div class="sum-divider"></div>
+      <div class="sum-row total-row"><span>Total</span><span id="coTotal">₹0</span></div>
+    </div>
+    <button class="place-order-btn" id="placeOrderBtn">Place Order →</button>
+    <p class="safe-note">🔒 100% Secure Checkout</p>
+  </div>
+
+</div>
+
+<script src="JavaScript/cart.js"></script>
+<script src="JavaScript/checkout.js"></script>
+</body>
+</html>

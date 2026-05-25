@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed – FoodieExpress</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    .confirm-section {
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px 60px;
+    }
+    .confirm-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+      padding: 50px 44px 44px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes popIn {
+      from { opacity:0; transform:scale(0.85) translateY(30px); }
+      to   { opacity:1; transform:scale(1) translateY(0); }
+    }
+    .check-circle {
+      width:90px; height:90px;
+      background: linear-gradient(135deg,#2e7d32,#43a047);
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 24px;
+      box-shadow:0 8px 24px rgba(46,125,50,0.30);
+      animation:bounceIn 0.7s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+      position:relative;
+    }
+    @keyframes bounceIn {
+      from { opacity:0; transform:scale(0); }
+      to   { opacity:1; transform:scale(1); }
+    }
+    .check-circle::after {
+      content:''; position:absolute; inset:-6px; border-radius:50%;
+      border:2px solid rgba(46,125,50,0.20);
+      animation:ripple 2s 0.8s ease-out infinite;
+    }
+    @keyframes ripple {
+      0%   { transform:scale(1); opacity:0.6; }
+      100% { transform:scale(1.4); opacity:0; }
+    }
+    .check-circle i { font-size:2.4rem; color:#fff; }
+    .confirm-title  { font-family:'Poppins',sans-serif; font-size:1.9rem; font-weight:800; color:#1a1a2e; margin-bottom:8px; }
+    .confirm-subtitle { font-size:1rem; color:#777; margin-bottom:28px; }
+    .order-id-box {
+      background:#f0f5fc; border:1.5px dashed #b0c4de; border-radius:12px;
+      padding:14px 20px; margin-bottom:28px;
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    .order-id-label { font-size:0.82rem; color:#888; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+    .order-id-value { font-size:1rem; font-weight:800; color:#1a4a7a; letter-spacing:1px; }
+    .delivery-info  { display:flex; justify-content:center; gap:24px; margin-bottom:32px; flex-wrap:wrap; }
+    .delivery-chip  {
+      display:flex; align-items:center; gap:8px;
+      background:#fdf6ee; border:1.5px solid #f0e8de; border-radius:50px;
+      padding:10px 18px; font-size:0.88rem; font-weight:600; color:#444;
+    }
+    .delivery-chip span:last-child { color:#1a4a7a; }
+    .timeline { background:#fdf6ee; border-radius:14px; padding:20px 24px; margin-bottom:32px; text-align:left; }
+    .timeline-title { font-size:0.82rem; font-weight:700; color:#999; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:14px; }
+    .timeline-step  { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; position:relative; }
+    .timeline-step:last-child { margin-bottom:0; }
+    .timeline-step::before {
+      content:''; position:absolute; left:13px; top:28px;
+      width:2px; height:calc(100% + 4px); background:#e0d5c8;
+    }
+    .timeline-step:last-child::before { display:none; }
+    .t-dot { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem; flex-shrink:0; position:relative; z-index:1; }
+    .t-dot.active  { background:#1a4a7a; color:#fff; box-shadow:0 0 0 4px rgba(26,74,122,0.12); }
+    .t-dot.pending { background:#f0e8de; color:#bbb; }
+    .t-dot.pulse   { background:#1a4a7a; color:#fff; animation:dotPulse 1.5s ease-in-out infinite; }
+    @keyframes dotPulse {
+      0%,100% { box-shadow:0 0 0 4px rgba(26,74,122,0.12); }
+      50%      { box-shadow:0 0 0 8px rgba(26,74,122,0.06); }
+    }
+    .t-info {}
+    .t-label { font-size:0.92rem; font-weight:700; color:#1a1a2e; line-height:1.3; }
+    .t-label.muted { color:#bbb; font-weight:600; }
+    .t-time  { font-size:0.78rem; color:#aaa; margin-top:2px; }
+    .confirm-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary {
+      flex:1; background:#1a4a7a; color:#fff; border:none;
+      padding:14px 20px; border-radius:12px; font-size:0.95rem; font-weight:700;
+      cursor:pointer; text-decoration:none;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition:background 0.2s,transform 0.15s;
+    }
+    .btn-primary:hover { background:var(--primary); transform:translateY(-1px); }
+    .btn-secondary {
+      flex:1; background:#fff; color:#1a4a7a; border:1.5px solid #1a4a7a;
+      padding:14px 20px; border-radius:12px; font-size:0.95rem; font-weight:700;
+      cursor:pointer; text-decoration:none;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition:all 0.2s;
+    }
+    .btn-secondary:hover { background:#1a4a7a; color:#fff; }
+    .confetti-wrapper { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; overflow:hidden; }
+    .confetti-piece {
+      position:absolute; top:-20px; width:10px; height:10px; border-radius:2px;
+      animation:confettiFall linear forwards;
+    }
+    @keyframes confettiFall {
+      0%   { transform:translateY(0) rotate(0deg); opacity:1; }
+      100% { transform:translateY(110vh) rotate(720deg); opacity:0; }
+    }
+    @media(max-width:560px){
+      .confirm-card { padding:36px 24px 32px; }
+      .confirm-title { font-size:1.5rem; }
+      .confirm-actions { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+
+<div class="step-bar">
+  <div class="step done">
+    <div class="step-circle"><i class="fas fa-check" style="font-size:0.7rem;"></i></div>
+    <span>Cart</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step done">
+    <div class="step-circle"><i class="fas fa-check" style="font-size:0.7rem;"></i></div>
+    <span>Checkout</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step done">
+    <div class="step-circle"><i class="fas fa-check" style="font-size:0.7rem;"></i></div>
+    <span>Confirmed</span>
+  </div>
+</div>
+
+
+<div class="confetti-wrapper" id="confettiWrapper"></div>
+
+
+<section class="confirm-section">
+  <div class="confirm-card">
+    <div class="check-circle">
+      <i class="fas fa-check"></i>
+    </div>
+
+    <h1 class="confirm-title">Order Placed! 🎉</h1>
+    <p class="confirm-subtitle">Your order has been successfully placed.<br>We will deliver as soon as possible!</p>
+
+    <div class="order-id-box">
+      <span class="order-id-label">Order ID</span>
+      <span class="order-id-value" id="orderId">#FE-000000</span>
+    </div>
+
+    <div class="delivery-info">
+      <div class="delivery-chip">
+        <span>🕐</span>
+        <span>Estimated:</span>
+        <span>30-40 min</span>
+      </div>
+      <div class="delivery-chip">
+        <span>🛵</span>
+        <span>Delivery:</span>
+        <span>FREE</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-title">Live Order Status</div>
+      <div class="timeline-step">
+        <div class="t-dot active"><i class="fas fa-check" style="font-size:0.65rem;"></i></div>
+        <div class="t-info">
+          <div class="t-label">Order Confirmed ✅</div>
+          <div class="t-time">Now</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="t-dot pulse">🍳</div>
+        <div class="t-info">
+          <div class="t-label">Preparing in kitchen</div>
+          <div class="t-time">~10-15 min</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="t-dot pending">🛵</div>
+        <div class="t-info">
+          <div class="t-label muted">Out for Delivery</div>
+          <div class="t-time">~20-30 min</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="t-dot pending">🏠</div>
+        <div class="t-info">
+          <div class="t-label muted">Delivered</div>
+          <div class="t-time">~30-40 min</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm-actions">
+      <a href="home.html" class="btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+      <a href="menu.html" class="btn-secondary"><i class="fas fa-utensils"></i> Order More</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function generateOrderId() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let id = '#FE-';
+    for (let i = 0; i < 6; i++) id += chars[Math.floor(Math.random() * chars.length)];
+    return id;
+  }
+  document.getElementById('orderId').textContent = generateOrderId();
+
+  function launchConfetti() {
+    const colors = ['#e8401c','#f9a825','#1a4a7a','#2e7d32','#8e44ad','#e74c3c','#27ae60'];
+    const container = document.getElementById('confettiWrapper');
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.width = (Math.random() * 8 + 6) + 'px';
+      piece.style.height = (Math.random() * 8 + 6) + 'px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      piece.style.animationDelay = (Math.random() * 1.5) + 's';
+      container.appendChild(piece);
+      piece.addEventListener('animationend', () => piece.remove());
+    }
+  }
+  window.addEventListener('DOMContentLoaded', () => setTimeout(launchConfetti, 400));
+</script>
+</body>
+</html>

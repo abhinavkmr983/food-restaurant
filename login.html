@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – FoodieExpress</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="FoodieExpress"></div>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="header-right">
+    <button class="cart-btn" onclick="window.location.href='cart.html'">
+      🛒 Cart <span id="cartCount" class="cart-count" style="display:none;"></span>
+    </button>
+  </div>
+</header>
+
+<section class="login-wrapper">
+  <div class="login-box">
+
+    <div class="tab-header-container" id="tabHeader">
+      <button class="tab active" id="login-tab" onclick="switchTab('login')">Login</button>
+      <button class="tab" id="signup-tab" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-form">
+      <div class="header">
+        <h2>Welcome Back 👋</h2>
+        <p>Login to your FoodieExpress account</p>
+      </div>
+
+      <button class="add-btn">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20" alt="Google"> Continue with Google
+      </button>
+
+      <div class="divider"><span></span><p>or</p><span></span></div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password">
+      </div>
+
+      <!-- Error message element (JS will show/hide this) -->
+      <p id="loginError" style="color:red; font-size:0.85rem; margin-top:-8px; margin-bottom:8px; display:none;"></p>
+
+      <div class="login-options">
+        <div class="remember">
+          <input type="checkbox" id="remember">
+          <label for="remember">Remember me</label>
+        </div>
+        <a href="#" class="forgot" onclick="showForgot()">Forgot Password?</a>
+      </div>
+
+      <button class="login-btn" onclick="handleLogin()">Login →</button>
+
+      <p class="bottom-text">
+        Don't have an account? <a href="#" onclick="switchTab('signup')">Sign Up</a>
+      </p>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div id="signup-form" style="display:none;">
+      <div class="header">
+        <h2>Create Account 🎉</h2>
+        <p>Join the FoodieExpress family</p>
+      </div>
+
+      <button class="add-btn">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20" alt="Google"> Continue with Google
+      </button>
+
+      <div class="divider"><span></span><p>or</p><span></span></div>
+
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="Your full name">
+      </div>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="signupEmail" placeholder="you@example.com">
+      </div>
+      <div class="input-group">
+        <label>Phone Number</label>
+        <input type="tel" id="signupPhone" placeholder="+91 0000000000">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Create a password">
+      </div>
+
+      <!-- Error/success message -->
+      <p id="signupError" style="font-size:0.85rem; margin-top:-8px; margin-bottom:8px; display:none;"></p>
+
+      <button class="login-btn" onclick="handleSignup()">Create Account →</button>
+
+      <p class="bottom-text">
+        Already have an account? <a href="#" onclick="switchTab('login')">Login</a>
+      </p>
+    </div>
+
+    <!-- FORGOT PASSWORD - STEP 1: Enter Email -->
+    <div id="forgot-step1" style="display:none;">
+      <span class="back-link" onclick="backToLogin()">
+        <i class="fas fa-arrow-left"></i> Back to Login
+      </span>
+      <div class="header">
+        <h2>Forgot Password 🔑</h2>
+        <p>Enter your registered email. We'll send an OTP to reset your password.</p>
+      </div>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="forgotEmail" placeholder="you@example.com">
+      </div>
+      <p id="forgotError" style="color:red; font-size:0.85rem; margin-top:-8px; margin-bottom:8px; display:none;"></p>
+      <button class="login-btn" onclick="sendOtp()">Send OTP →</button>
+    </div>
+
+    <!-- FORGOT PASSWORD - STEP 2: Enter OTP -->
+    <div id="forgot-step2" style="display:none;">
+      <span class="back-link" onclick="showStep(1)">
+        <i class="fas fa-arrow-left"></i> Back
+      </span>
+      <div class="header">
+        <h2>Enter OTP 📩</h2>
+        <p>We sent a 4-digit OTP to <strong id="sentToEmail"></strong></p>
+      </div>
+      <div class="otp-inputs">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpMove(this, 0)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpMove(this, 1)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpMove(this, 2)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpMove(this, 3)">
+      </div>
+      <p id="otpError" style="color:red; font-size:0.85rem; margin-top:8px; margin-bottom:8px; display:none;"></p>
+      <button class="login-btn" onclick="verifyOtp()">Verify OTP →</button>
+      <p class="bottom-text" style="margin-top:14px;">
+        Didn't receive? <a href="#" onclick="sendOtp(true)">Resend OTP</a>
+      </p>
+    </div>
+
+    <!-- FORGOT PASSWORD - STEP 3: New Password -->
+    <div id="forgot-step3" style="display:none;">
+      <span class="back-link" onclick="showStep(2)">
+        <i class="fas fa-arrow-left"></i> Back
+      </span>
+      <div class="header">
+        <h2>Reset Password 🔒</h2>
+        <p>Choose a strong new password for your account.</p>
+      </div>
+      <div class="input-group">
+        <label>New Password</label>
+        <input type="password" id="newPassword" placeholder="Enter new password">
+      </div>
+      <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+      </div>
+      <p id="resetError" style="color:red; font-size:0.85rem; margin-top:-8px; margin-bottom:8px; display:none;"></p>
+      <button class="login-btn" onclick="resetPassword()">Reset Password →</button>
+    </div>
+
+    <!-- FORGOT PASSWORD - STEP 4: Success -->
+    <div id="forgot-step4" style="display:none;">
+      <div class="success-check">
+        <div class="check-icon">✅</div>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:#1a1a2e;margin-bottom:8px;">Password Reset!</h2>
+        <p style="color:#888;margin-bottom:24px;">Your password has been successfully reset. You can now login with your new password.</p>
+        <button class="login-btn" onclick="backToLogin()" style="width:auto;padding:12px 36px;">Go to Login →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="JavaScript/main.js"></script>
+</body>
+</html>
